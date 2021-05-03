@@ -1,23 +1,34 @@
-const assertEqual = require('../assertEqual');
+const {expect} = require('chai');
 const tail = require('../tail');
 
-//number array test
-let result = tail([1,2,3]);
-assertEqual(result.length, 2);
-assertEqual(result[0], 2);
-assertEqual(result[1], 3);
+describe('#tail', () => {
+  
+  //number array test
+  it('returns [2, 3] for [1, 2, 3]', () => {
+    const result = tail([1,2,3]);
+    expect(result).to.deep.equal([2,3]);
+    expect(result).to.have.lengthOf(2);
+  });
 
-//string array test
-result = tail(['hi','this','is','test']);
-assertEqual(result.length, 3);
-assertEqual(result[0], 'this');
-assertEqual(result[1], 'is');
-assertEqual(result[2], 'test');
+  //string array test
+  it('returns ["this", "is", "test"] for ["hi", "this", "is", "test"]', () => {
+    const result = tail(['hi','this','is','test']);
+    expect(result).to.have.deep.equal(['this','is','test']);
+    expect(result).to.have.lengthOf(3);
+  });
 
-//empty array test
-result = tail([]);
-assertEqual(result.length, 0);
+  // //empty array test
+  it('returns 0 for []', () => {
+    const  result = tail([]);
+    expect(result).to.have.deep.equal([]);
+    expect(result).to.have.lengthOf(0);
+  });
+  
+  // //one element array test
+  it('returns 0 for ["test"]', () => {
+    const result = tail(['test']);
+    expect(result).to.have.deep.equal([]);
+    expect(result).to.have.lengthOf(0);
+  });
+});
 
-//one element array test
-result = tail(['test']);
-assertEqual(result.length, 0);
