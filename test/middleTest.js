@@ -1,7 +1,7 @@
 const {expect} = require('chai');
 const middle = require('../middle');
 
-describe('', () => {
+describe('#middle', () => {
   // //Return empty array, if less than 3 elements
   it('Return empty array, if less than 3 elements', () => {
     let result = middle([1]);
